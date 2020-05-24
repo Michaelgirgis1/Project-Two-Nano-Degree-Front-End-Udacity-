@@ -237,7 +237,7 @@ section {
         font-size: 25px;
         cursor: pointer;
       }
-      .check-box:checked ~ .naviagtion-mobile {
+      .check-box:checked ~ .is-visible {
         display: block;
       }
       .navigation-desktop{

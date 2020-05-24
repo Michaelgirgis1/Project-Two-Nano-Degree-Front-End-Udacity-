@@ -21,6 +21,7 @@
   sectionIntersect = document.querySelectorAll(".section-enter"),
   scrollTopArrow = document.getElementById("scroll-top");
  let headerLinks = document.querySelectorAll(".navigation-desktop ul li"),
+     mobileHeaderLinks = document.querySelectorAll( ".naviagtion-mobile .item label"),
      headerHeight = document.querySelector(".header").clientHeight,
      windowHeight = window.innerHeight,
      sectionOffSetTop= [],
@@ -76,6 +77,7 @@ window.onscroll= function(){
 
     }
 }
+console.log(mobileHeaderLinks)
 // to scroll to section clicked
 headerLinks.forEach(function(link) {
     link.addEventListener("click",function(event) {
@@ -88,7 +90,22 @@ headerLinks.forEach(function(link) {
             top: linkPositionTop,
             behavior:'smooth'
         });
+     
 
+    })
+})
+mobileHeaderLinks.forEach(function (link) {
+    link.addEventListener("click", function(event) {
+        event.preventDefault();
+        let mobileLinkValue = this.dataset.value;
+        let linkPositionTop = document.querySelector(`#${mobileLinkValue}`).offsetTop
+        window.scrollTo({
+            top: linkPositionTop,
+            behavior:'smooth'
+        });
+        // to skrink menu on mobile when click at menu item
+        let checkItem = document.getElementById("menu")
+        checkItem.checked = false;
     })
 })
 scrollTopArrow.addEventListener('click', function(){
