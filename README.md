@@ -2,12 +2,10 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* DOM manipulate 
+* Dyanmic navbar  
+* Change navbar active item according to section that is appear.
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+This ths second project of Front End Course Nano Degree. We learn more lessons about the the DOM and how to manipulate every item in the DOM tree. We aplay all of these skill at this project from how to create navbar dynamicly to how to select content of certain element and change it easily with javascript. 

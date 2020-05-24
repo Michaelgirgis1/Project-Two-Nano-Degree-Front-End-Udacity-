@@ -12,7 +12,42 @@
  * JS Standard: ESlint
  *
 */
-
+// build the nav for desktop
+let sections = document.querySelectorAll(".section-enter"),
+    navDesktop = document.querySelector(".navigation-desktop .first-level");
+const navFragment = document.createDocumentFragment();
+    sections.forEach(function(section, index){
+        // create li for each section
+        const sectionTitle = section.querySelector("h2").textContent;
+        let sectionId = section.getAttribute("id")
+        let li = document.createElement( "li");
+        let a = document.createElement( "a");
+        a.textContent = sectionTitle;
+        li.setAttribute("data-value", sectionId);
+        li.appendChild(a);
+        li.classList.add ("first-level__item")
+        a.setAttribute("href", "#")
+        navFragment.appendChild(li)
+        if(index == 0){
+            li.classList.add("active")
+        }
+       
+    })
+    navDesktop.appendChild(navFragment)
+    // build the nav for mobile 
+  let navMobile = document.querySelector(".naviagtion-mobile")
+  sections.forEach(function(section){
+    const sectionTitle = section.querySelector("h2").textContent;
+    let sectionId = section.getAttribute("id")
+    let div = document.createElement( "div");
+    let label = document.createElement( "label");
+    div.classList.add("item")
+    label.setAttribute("data-value", sectionId)
+    label.textContent = sectionTitle
+    div.appendChild(label)
+    navFragment.appendChild(div)
+  })
+  navMobile.appendChild(navFragment)
 /**
  *   Global Variables
  *
@@ -20,34 +55,17 @@
  const header = document.querySelector(".navigation-desktop"),
   sectionIntersect = document.querySelectorAll(".section-enter"),
   scrollTopArrow = document.getElementById("scroll-top");
- let headerLinks = document.querySelectorAll(".navigation-desktop ul li"),
-     mobileHeaderLinks = document.querySelectorAll( ".naviagtion-mobile .item label"),
+ let mobileHeaderLinks = document.querySelectorAll( ".naviagtion-mobile .item label"),
+     headerLinks = document.querySelectorAll(".navigation-desktop ul li")
      headerHeight = document.querySelector(".header").clientHeight,
      windowHeight = window.innerHeight,
      sectionOffSetTop= [],
      sectionHeights=[],
      sumAllSectionHeight=0
-
 /**
  * End Global Variables
- * Start Helper Functions
  *
 */
-
-
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
-*/
-
-// build the nav
-
-
-// Add class 'active' to section when near top of viewport
-
-
 // Scroll to anchor ID using scrollTO event
     // smooth scroll to div
 for(let i=0; i<sectionIntersect.length;i++){
@@ -55,15 +73,11 @@ for(let i=0; i<sectionIntersect.length;i++){
     sectionHeights.push(sectionIntersect[i].clientHeight)
     sumAllSectionHeight += sectionHeights[i]
 }
-
-console.log(sectionOffSetTop, sectionHeights, sumAllSectionHeight, windowHeight)
 // to change active item when scroll
 window.onscroll= function(){
        let top = window.scrollY;
        for(let i=0; i<sectionIntersect.length; i++){
-        if((sectionOffSetTop[i] - (windowHeight+top)) < -200 && (sectionOffSetTop[i] - (windowHeight+top)) > -300){
-            // let linkValue = this.dataset.value,
-            //     sectionActive = document.querySelector(`#${linkValue}`)
+        if(((windowHeight+top) - sectionOffSetTop[i]) > 200 && ((windowHeight+top) - sectionOffSetTop[i]) < 300){
             headerLinks.forEach(element => element.classList.remove("active"))
             sectionIntersect.forEach(element => element.classList.remove("your-active-class"))
             sectionIntersect[i].classList.add("your-active-class")
@@ -74,10 +88,8 @@ window.onscroll= function(){
         scrollTopArrow.style.display= "flex"
     }else{
         scrollTopArrow.style.display= "none"
-
     }
 }
-console.log(mobileHeaderLinks)
 // to scroll to section clicked
 headerLinks.forEach(function(link) {
     link.addEventListener("click",function(event) {
@@ -90,8 +102,6 @@ headerLinks.forEach(function(link) {
             top: linkPositionTop,
             behavior:'smooth'
         });
-     
-
     })
 })
 mobileHeaderLinks.forEach(function (link) {
@@ -114,40 +124,5 @@ scrollTopArrow.addEventListener('click', function(){
         behavior:'smooth'
     });
 })
-// let navLink = document.querySelector('.header ul a')
-// $('.links li a').click(function () {
-//     window.scrollTo(50,0);
-
-// 		// $('html, body').animate({
-
-// 		// 	scrollTop: $('#' + $(this).data('value')).offset().top
-
-// 		// }, 1000);
-// 	});
-
-//     document.getElementById("tunnel").animate([
-//         // keyframes
-//         { transform: 'translateY(0px)' },
-//         { transform: 'translateY(-300px)' }
-//       ], {
-//         // timing options
-//         duration: 1000,
-//         iterations: Infinity
-//       });
-/**
- * End Main Functions
- * Begin Events
- *
-*/
-
-// Build menu
-
-// Scroll to section on link click
-
-// Set sections as active
-
-
- // change color of header when scroll down
-
 
 
